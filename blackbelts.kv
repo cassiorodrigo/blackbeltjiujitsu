@@ -1,0 +1,233 @@
+ScreenManager:
+    MainScreen:
+        name: "Mainscreen"
+    Second:
+        name:
+            "Second"
+    Adicionar:
+        name:
+            "Adicionar"
+
+    AlterarEntrada:
+        name:
+            "AlterarEntrada"
+
+<MainScreen>:
+    GridLayout:
+        padding:35
+        rows:2
+        cols:1
+        BoxLayout:
+            orientation:'vertical'
+            MDTextFieldRound:
+                id:textin
+                icon_left:'search-web'
+                hint_text:"Localizar"
+                on_text: root.filtrar(self.text)
+            ScrollView:
+                MDList:
+                    id:container
+                    OneLineListItem:
+                        text:""
+
+
+        BoxLayout:
+            size_hint:(None, None)
+#            pos_hint:None, None
+            canvas.before:
+                Color:
+                    rgba:(155,155,0,0.8)
+                Rectangle:
+                    pos:self.pos
+                    size:self.size
+
+            MDFloatingActionButton:
+                icon: 'plus'
+                opposite_colors: True
+                elevation_normal: 8
+                id:atualizar
+                on_release: root.manager.current = "Adicionar"
+
+<Second>:
+    BoxLayout:
+        orientation:"vertical"
+        BoxLayout:
+            canvas.before:
+                Color:
+                    rgba:(0,0,0,0.35)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            MDLabel:
+                id:mostrarlutador
+                text:""
+                text_size: self.size
+                halign:'center'
+                valign:'middle'
+                markup: True
+
+        BoxLayout:
+            MDFlatButton:
+                size_hint_x:0.2
+                size_hint_y:0.1
+                pos_hint:{"center_x":1}
+                id: back
+                text:"Voltar"
+                on_release:
+                    root.manager.current = "Mainscreen"
+            MDFillRoundFlatIconButton:
+                size_hint_y:0.1
+                size_hint_x:0.2
+                pos_hint_x:{"right":1}
+                id:deletarbtn
+                text:"Apagar"
+                icon: "delete"
+
+<Adicionar>:
+    GridLayout:
+        cols:1
+        padding:50
+        BoxLayout:
+            size_hint:None,None
+            size:self.size
+            pos:self.pos
+            orientation:"vertical"
+            MDLabel:
+                text:"Nome"
+            MDTextField:
+                id:nomedigitado
+                text:""
+                hint_text:"Nome"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDDropDownItem:
+                id: faixa
+                items:["Branca","Amarela","Azul", "Roxa", "Marrom", "Preta","Vermelha", "Coral", "Zerou o Jiujitsu no modo hard"]
+                position: "center"
+                #on_select:root.mostrarvalor(self.current_item)
+            MDLabel:
+                text:"Faixa"
+        BoxLayout:
+            MDLabel:
+                text:"Equipe"
+            MDTextField:
+                id:equipe
+                text:""
+                hint_text:"Equipe"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Academia"
+            MDTextField:
+                id:academia
+                text:""
+                hint_text:"Academia"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Data da Graduação"
+            MDTextField:
+                id:datagraduacao
+                text:""
+                hint_text:"Data da Graduação"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Apelido"
+            MDTextField:
+                id:apelido
+                text:""
+                hint_text: "Apelido"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDFlatButton:
+                id:adicionar
+                text:"Adicionar"
+                on_press:
+                    root.adicionar(nomedigitado.text, faixa.current_item, equipe.text, academia.text, datagraduacao.text,
+                    apelido.text)
+            MDFlatButton:
+                id:back
+                text:"Voltar"
+                on_press:
+                    root.manager.current = "Mainscreen"
+
+<AlterarEntrada>:
+    GridLayout:
+        cols:1
+        padding:50
+        BoxLayout:
+            size_hint:None,None
+            size:self.size
+            pos:self.pos
+            orientation:"vertical"
+            MDLabel:
+                text:"Nome"
+            MDTextField:
+                id:nomedigitado
+                text:""
+                hint_text:"Alterar Nome"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDDropDownItem:
+                id: faixa
+                items:["Branca","Amarela","Azul", "Roxa", "Marrom", "Preta", "Vermelha", "Coral", "Zerou o Jiujitsu no modo hard"]
+                position: "center"
+                on_select:root.mostrarvalor(self.current_item)
+            MDLabel:
+                text:"Faixa"
+        BoxLayout:
+            MDLabel:
+                text:"Equipe"
+            MDTextField:
+                id:equipe
+                text:""
+                hint_text:"Equipe"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Academia"
+            MDTextField:
+                id:academia
+                text:""
+                hint_text:"Academia"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Data da Graduação"
+            MDTextField:
+                id:datagraduacao
+                text:""
+                hint_text:"Data da Graduação"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDLabel:
+                text:"Apelido"
+            MDTextField:
+                id:apelido
+                text:""
+                hint_text: "Apelido"
+                multiline: False
+                write_tab: False
+        BoxLayout:
+            MDFlatButton:
+                id:adicionar
+                text:"Adicionar"
+                on_press:
+                    root.adicionar(nomedigitado.text, faixa.current_item, equipe.text, academia.text, datagraduacao.text,
+                    apelido.text)
+            MDFlatButton:
+                id:back
+                text:"Voltar"
+                on_press:
+                    root.manager.current = "Mainscreen"
